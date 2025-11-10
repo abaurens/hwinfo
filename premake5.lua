@@ -10,13 +10,10 @@ project "hwinfo"
   targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
   objdir ("%{wks.location}/build/" .. outputdir .. "%{prj.name}")
 
-  IncludeDir["hwinfo"] = "%{wks.location}/libs/hwinfo/include"
+  --IncludeDir["hwinfo"] = "%{wks.location}/libs/hwinfo/include"
 
   includedirs {
-    "%{IncludeDir.hwinfo}",
-    --"external/miss-opencl",
-    --"external/miss-opencl/include",
-    --"external/miss-opencl/external/OpenCL/external/OpenCL-CLHPP/include"
+    --"%{IncludeDir.hwinfo}",
   }
 
   files {
@@ -59,3 +56,9 @@ project "hwinfo"
   filter "configurations:Release"
     runtime "Release"
     optimize "On"
+
+  usage "PUBLIC"
+    includedirs { "./include" }
+
+  usage "INTERFACE"
+    links { "hwinfo" }
